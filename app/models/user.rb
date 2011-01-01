@@ -24,10 +24,12 @@ class User < ActiveRecord::Base
   end
 
   before_validation :sanitize_data, :before_validation_on_create
+  before_create :start_store_credits
   attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, :openid_identifier, :birth_date, :role_ids, :address_attributes, :phone_attributes
 
   belongs_to :account
 
+  has_one     :store_credit
   has_many    :orders
   has_many    :phones,                    :dependent => :destroy,
                                           :as => :phoneable
@@ -284,6 +286,10 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def start_store_credits
+    self.store_credit = StoreCredit.new(:amount => 0.0, :user => self)
+  end
 
   def password_required?
     self.crypted_password.blank?
