@@ -22,6 +22,14 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def require_user
+    redirect_to login_url and return if logged_out?
+  end
+
+  def logged_out?
+    !current_user
+  end
+
   def search_product
     @search_product || Product.new
   end
