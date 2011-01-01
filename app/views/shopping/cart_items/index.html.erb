@@ -11,16 +11,16 @@
         <li id='cart-item-<%= i %>' class='individual-cart-item'>
         <% photo_url = item.variant.product.featured_image %>
             <%= image_tag(photo_url) if photo_url %>
-            (<%= item.quantity %>) 
-            <%= item.variant.product_name %> 
-            <%= link_to 'remove', shopping_cart_item_path(item, :variant_id => item.variant_id), 
+            (<%= item.quantity %>)
+            <%= item.variant.product_name %>
+            <%= link_to 'remove', shopping_cart_item_path(item, :variant_id => item.variant_id),
                                   :method => :delete %>
         </li>
       <% end %>
       </ul>
     </div>
     <%= render :partial => '/shopping/cart_items/saved_items' unless @saved_cart_items.empty? %>
-    
+
   </div>
   <div class='span-6 last'>
     <%= link_to 'Checkout', shopping_orders_path, :class => 'button spade inline-block' %>

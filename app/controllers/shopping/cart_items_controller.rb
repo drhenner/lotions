@@ -55,7 +55,7 @@ class Shopping::CartItemsController < Shopping::BaseController
       else
         flash[:notice] = "Sorry something went wrong"
         redirect_to(root_url())
-      end 
+      end
     end
   end
 
@@ -76,11 +76,11 @@ class Shopping::CartItemsController < Shopping::BaseController
   end
 ## TODO
   ## This method moves saved_cart_items to your shopping_cart_items or saved_cart_items
-  #   this method is called using AJAX and returns json. with the object moved, 
+  #   this method is called using AJAX and returns json. with the object moved,
   #   otherwise false is returned if there is an error
   #   method => PUT
   def move_to
-    
+
   end
 
   # DELETE /carts/1
@@ -89,9 +89,9 @@ class Shopping::CartItemsController < Shopping::BaseController
     session_cart.remove_variant(params[:variant_id]) if params[:variant_id]
     redirect_to(shopping_cart_items_url)
   end
-  
+
   private
-  
+
   def get_new_cart_item
     if current_user
       session_cart.cart_items.new(params[:cart_item].merge({:user_id => current_user.id}))
@@ -100,5 +100,5 @@ class Shopping::CartItemsController < Shopping::BaseController
       session_cart.cart_items.new(params[:cart_item])
     end
   end
-  
+
 end

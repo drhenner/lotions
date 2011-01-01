@@ -23,6 +23,10 @@
       <div id='no-variant-available' class=' span-8  last'>
         Sorry this product is not currently available.
       </div>
+    <% else %>
+      <div id='product_description' class='left-text-4'>
+        <%= raw @product.description %>
+      </div>
     <% end %>
     <% @product.variants.each_with_index do |variant, i| %>
       <div  id='variant_border_<%= i %>'
@@ -50,8 +54,7 @@
         <%= f.hidden_field :variant_id %>
       <% end %>
       <% unless @product.variants.empty? %>
-        <%= image_tag('icons/add_to_shopping_cart_sm.png',  :id => 'submit_add_to_cart',
-                                                            :class => 'add-to-cart') %>
+        <div id='submit_add_to_cart' class='add-to-cart' >  </div>
       <% end %>
     <% end %>
   </div>
