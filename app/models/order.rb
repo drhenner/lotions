@@ -145,16 +145,16 @@ class Order < ActiveRecord::Base
 
 
   ## This method creates the invoice and payment method.  If the payment is not authorized the whole transaction is roled back
-  def create_invoice(credit_card, charge_amount, args)
+  def create_invoice(credit_card, charge_amount, args, credited_amount = 0.0)
     transaction do
-      create_invoice_transaction(credit_card, charge_amount, args)
+      create_invoice_transaction(credit_card, charge_amount, args, credited_amount)
     end
   end
 
   # call after the order is completed (authorized the payment)
   # => sets the order.state to completed, sets completed_at to time.now and updates the inventory
   #
-  # @param [Invoice]
+  # @param [none]
   # @return [Payment] payment object
   def order_complete!
     self.state = 'complete'
@@ -234,6 +234,26 @@ class Order < ActiveRecord::Base
     end
     self.sub_total = self.total
     self.total = (self.total + shipping_charges).round_at( 2 )
+  end
+
+  # called when creating the invoice.  This does not change the store_credit amount
+  #
+  # @param [none]
+  # @return [Float] amount that the order is charged after store credit is applyed
+  def credited_total
+    (find_total - amount_to_credit).round_at( 2 )
+  end
+
+  # amount to credit based off the user store credit
+  #
+  # @param [none]
+  # @return [Float] amount to remove from store credit
+  def amount_to_credit
+    [find_total, user.store_credit.amount].min
+  end
+
+  def remove_user_store_credits
+    user.store_credit.remove_credit(amount_to_credit) if amount_to_credit > 0.0
   end
 
   # calculates the total shipping charges for all the items in the cart
@@ -449,8 +469,8 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def create_invoice_transaction(credit_card, charge_amount, args)
-    invoice_statement = Invoice.generate(self.id, charge_amount)
+  def create_invoice_transaction(credit_card, charge_amount, args, credited_amount = 0.0)
+    invoice_statement = Invoice.generate(self.id, charge_amount, credited_amount)
     invoice_statement.save
     invoice_statement.authorize_payment(credit_card, args)#, options = {})
     invoices.push(invoice_statement)
