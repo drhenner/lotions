@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
 #         :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  include ActiveMerchant::Utils
+  #include ActiveMerchant::Utils
+  include UserCim
 
   acts_as_authentic do |config|
     config.validate_email_field
@@ -298,7 +299,7 @@ class User < ActiveRecord::Base
   def create_cim_profile
     return true if customer_cim_id
     #Login to the gateway using your credentials in environment.rb
-    @gateway = get_payment_gateway
+    @gateway = GATEWAY
 
     #setup the user object to save
     @user = {:profile => user_profile}
