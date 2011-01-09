@@ -1,4 +1,4 @@
-class Myaccount::AddressesController < ApplicationController
+class Myaccount::AddressesController < Myaccount::BaseController
   def index
     @addresses = current_user.addresses
   end
