@@ -97,7 +97,7 @@ class User < ActiveRecord::Base
                           :uniqueness => true,##  This should be done at the DB this is too expensive in rails
                           :format   => { :with => CustomValidators::Emails.email_validator },
                           :length => { :maximum => 255 }
-  validates :password,    :presence => { :if => :password_required? }, :confirmation => true, :length => 6..20
+  validates :password,    :presence => { :if => :password_required? }, :confirmation => true
 
   accepts_nested_attributes_for :addresses, :phones, :user_roles
 
@@ -110,15 +110,20 @@ class User < ActiveRecord::Base
     state :canceled
 
     event :activate do
-      transition :inactive => :active
+      transition :from => :inactive,    :to => :active
     end
 
     event :register do
-      transition any => :registered
+      #transition :to => 'registered', :from => :all
+      transition :from => :active,                 :to => :registered
+      transition :from => :inactive,               :to => :registered
+      transition :from => :unregistered,           :to => :registered
+      transition :from => :registered_with_credit, :to => :registered
+      transition :from => :canceled,               :to => :registered
     end
 
     event :cancel do
-      transition :all => :canceled
+      transition :from => any, :to => :canceled
     end
 
   end
@@ -296,23 +301,23 @@ class User < ActiveRecord::Base
     self.crypted_password.blank?
   end
 
-  def create_cim_profile
-    return true if customer_cim_id
-    #Login to the gateway using your credentials in environment.rb
-    @gateway = GATEWAY
-
-    #setup the user object to save
-    @user = {:profile => user_profile}
-
-    #send the create message to the gateway API
-    response = @gateway.create_customer_profile(@user)
-
-    if response.success? and response.authorization
-      update_attributes({:customer_cim_id => response.authorization})
-      return true
-    end
-    return false
-  end
+  #def create_cim_profile
+  #  return true if customer_cim_id
+  #  #Login to the gateway using your credentials in environment.rb
+  #  @gateway = GATEWAY
+  #
+  #  #setup the user object to save
+  #  @user = {:profile => user_profile}
+  #
+  #  #send the create message to the gateway API
+  #  response = @gateway.create_customer_profile(@user)
+  #
+  #  if response.success? and response.authorization
+  #    update_attributes({:customer_cim_id => response.authorization})
+  #    return true
+  #  end
+  #  return false
+  #end
 
   def user_profile
     return {:merchant_customer_id => self.id, :email => self.email, :description => self.merchant_description}
