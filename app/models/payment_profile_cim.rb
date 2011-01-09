@@ -1,13 +1,6 @@
 require 'active_merchant'
 module PaymentProfileCim
   include ActiveMerchant::Billing
-  #include ActiveMerchant::Utils
-  #belongs_to :user
-
-  #attr_accessor :address
-  #attr_accessor :credit_card
-
-  #validates_presence_of :user_id, :credit_card, :address
 
   def create
     if super and create_payment_profile
