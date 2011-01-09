@@ -38,7 +38,7 @@ module PaymentProfileCim
 
     @profile = {:customer_profile_id => self.user.customer_cim_id,
                 :payment_profile => {:bill_to => self.address.try(:cc_params),
-                                     :payment => {:credit_card => CreditCard.new(self.credit_card)}
+                                     :payment => {:credit_card => self.credit_card}
                                      }
                 }
     response = @gateway.create_customer_payment_profile(@profile)
@@ -47,7 +47,7 @@ module PaymentProfileCim
       self.credit_card = {}
       return true
     end
-    self.errors.add_to_base('Unable to save CreditCard try again or Please Call for help.')
+    self.errors.add(:base, 'Unable to save CreditCard try again or Please Call for help.')
     return false
   end
 
@@ -57,7 +57,7 @@ module PaymentProfileCim
     @profile = {:customer_profile_id => self.user.customer_cim_id,
                 :payment_profile => {:customer_payment_profile_id => self.payment_cim_id,
                                      :bill_to => self.address.try(:cc_params),
-                                     :payment => {:credit_card => CreditCard.new(self.credit_card)}
+                                     :payment => {:credit_card => self.credit_card}
                                      }
                 }
     response = @gateway.update_customer_payment_profile(@profile)
@@ -65,7 +65,7 @@ module PaymentProfileCim
       self.credit_card = {}
       return true
     end
-    self.errors.add_to_base('Unable to save CreditCard try again or Please Call for help.')
+    self.errors.add(:base,'Unable to save CreditCard try again or Please Call for help.')
     return false
   end
 
