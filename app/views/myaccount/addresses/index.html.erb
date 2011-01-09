@@ -1,0 +1,17 @@
+<h1> Addresses </h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for address in @addresses %>
+    <tr>
+      <td><%= address.name %></td>
+      <td><%= link_to "Show", myaccount_address_path(address) %></td>
+      <td><%= link_to "Edit", edit_myaccount_address_path(address) %></td>
+      <td><%= link_to "Destroy", myaccount_address_path(address), :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Address", new_myaccount_address_path, :class => 'button' %></p>
