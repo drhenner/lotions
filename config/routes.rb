@@ -1,7 +1,7 @@
 Hadean::Application.routes.draw do # |map|
 
   resources :user_sessions
-  resource :store_credit, :only => [:show]
+
   match 'admin'   => 'admin/overviews#index'
   match 'login'   => 'user_sessions#new'
   match 'logout'  => 'user_sessions#destroy'
@@ -27,6 +27,8 @@ Hadean::Application.routes.draw do # |map|
   namespace :myaccount do
     resources :orders, :only => [:index]
     resources :addresses
+    resources :credit_cards
+    resource  :store_credit, :only => [:show]
   end
 
   namespace :shopping do
