@@ -14,11 +14,45 @@ class PaymentProfile < ActiveRecord::Base
 
   validates :user_id,         :presence => true
   validates :payment_cim_id,  :presence => true
+  validates :cc_type,         :presence => true, :length => { :maximum => 60 }
+  validates :last_digits,     :presence => true, :length => { :maximum => 10 }
+  validates :month,           :presence => true, :length => { :maximum => 6 }
+  validates :year,            :presence => true, :length => { :maximum => 6 }
+
+
   validate            :validate_card
   #validates :address_id,      :presence => true
 
   #attr_accessible # none
 
+  def name
+    [cc_type, last_digits].join(' - ')
+  end
+
+  def inactivate!
+    self.active = false
+    self.save!
+  end
+
+  # Use this method to create a PaymentProfile
+  # => This method will create a new PaymentProfile and if the PaymentProfile is a default PaymentProfile it
+  # => will make all other PaymentProfiles that belong to the user non-default
+  #
+  # @param [User] user associated to the payment profile
+  # @param [Hash] hash of attributes for the new address
+  # @ return [Boolean] true or nil
+  def save_default_profile(cc_user)
+    PaymentProfile.transaction do
+      if self.default == true
+        PaymentProfile.update_all( { :default  => false},
+                            { :payment_profiles => {
+                                  :user_id => cc_user.id,
+                                            } }) if cc_user
+      end
+      self.user = cc_user
+      self.save
+    end
+  end
   # method used by forms to credit a temp credit card
   #
   # ------------
@@ -29,13 +63,13 @@ class PaymentProfile < ActiveRecord::Base
   # @param [none]
   # @return [CreditCard]
   def credit_card_info=( card_or_params )
-    credit_card = case card_or_params
+    self.credit_card = case card_or_params
       when ActiveMerchant::Billing::CreditCard, nil
         card_or_params
       else
         ActiveMerchant::Billing::CreditCard.new(card_or_params)
       end
-    set_minimal_cc_data(credit_card)
+    set_minimal_cc_data(self.credit_card)
   end
 
   # credit card object with known values
@@ -65,8 +99,9 @@ class PaymentProfile < ActiveRecord::Base
   end
 
   def validate_card
+    return true if !self.active
     if credit_card.nil?
-      errors.add_to_base 'Credit Card is not present'
+      errors.add( :base, 'Credit Card is not present.')
       return false
     end
     # first validate via ActiveMerchant local code
@@ -74,7 +109,7 @@ class PaymentProfile < ActiveRecord::Base
       # collect credit card error messages into the profile object
       #errors.add(:credit_card, "must be valid")
       credit_card.errors.full_messages.each do |message|
-        errors.add_to_base message
+        errors.add(:base, message)
       end
       return
     end
