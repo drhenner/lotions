@@ -2,14 +2,17 @@
 
 <table>
   <tr>
-    <th>Name</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
   </tr>
   <% for address in @addresses %>
     <tr>
-      <td><%= address.name %></td>
+      <td><%= address.address_lines %></td>
       <td><%= link_to "Show", myaccount_address_path(address) %></td>
       <td><%= link_to "Edit", edit_myaccount_address_path(address) %></td>
-      <td><%= link_to "Destroy", myaccount_address_path(address), :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to "Remove", myaccount_address_path(address), :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
