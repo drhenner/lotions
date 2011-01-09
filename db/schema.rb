@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110101085540) do
+ActiveRecord::Schema.define(:version => 20110103060342) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",                                                           :null => false
@@ -151,13 +151,14 @@ ActiveRecord::Schema.define(:version => 20110101085540) do
   add_index "images", ["imageable_type"], :name => "index_images_on_imageable_type"
 
   create_table "invoices", :force => true do |t|
-    t.integer  "order_id",                                                           :null => false
-    t.decimal  "amount",       :precision => 8, :scale => 2,                         :null => false
-    t.string   "state",                                                              :null => false
-    t.boolean  "active",                                     :default => true,       :null => false
+    t.integer  "order_id",                                                              :null => false
+    t.decimal  "amount",          :precision => 8, :scale => 2,                         :null => false
+    t.string   "state",                                                                 :null => false
+    t.boolean  "active",                                        :default => true,       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "invoice_type",                               :default => "Purchase", :null => false
+    t.string   "invoice_type",                                  :default => "Purchase", :null => false
+    t.decimal  "credited_amount", :precision => 8, :scale => 2, :default => 0.0
   end
 
   add_index "invoices", ["order_id"], :name => "index_invoices_on_order_id"
@@ -195,13 +196,14 @@ ActiveRecord::Schema.define(:version => 20110101085540) do
     t.integer  "bill_address_id"
     t.integer  "ship_address_id"
     t.integer  "coupon_id"
-    t.boolean  "active",          :default => true,  :null => false
+    t.boolean  "active",                                        :default => true,  :null => false
     t.datetime "calculated_at"
     t.datetime "completed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "shipments_count", :default => 0,     :null => false
-    t.boolean  "shipped",         :default => false, :null => false
+    t.integer  "shipments_count",                               :default => 0,     :null => false
+    t.boolean  "shipped",                                       :default => false, :null => false
+    t.decimal  "credited_amount", :precision => 8, :scale => 2, :default => 0.0
   end
 
   add_index "orders", ["bill_address_id"], :name => "index_orders_on_bill_address_id"
@@ -216,6 +218,13 @@ ActiveRecord::Schema.define(:version => 20110101085540) do
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "last_digits"
+    t.string   "month"
+    t.string   "year"
+    t.string   "cc_type"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "card_name"
   end
 
   add_index "payment_profiles", ["user_id"], :name => "index_payment_profiles_on_user_id"
