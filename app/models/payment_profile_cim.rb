@@ -34,7 +34,7 @@ module PaymentProfileCim
     if not self.payment_cim_id
       return false
     end
-    @gateway = GATEWAY
+    @gateway = CIM_GATEWAY
 
     @profile = {:customer_profile_id => self.user.customer_cim_id,
                 :payment_profile => {:bill_to => self.address.try(:cc_params),
@@ -52,7 +52,7 @@ module PaymentProfileCim
   end
 
   def update_payment_profile
-    @gateway = GATEWAY
+    @gateway = CIM_GATEWAY
 
     @profile = {:customer_profile_id => self.user.customer_cim_id,
                 :payment_profile => {:customer_payment_profile_id => self.payment_cim_id,
@@ -70,7 +70,7 @@ module PaymentProfileCim
   end
 
   def delete_payment_profile
-    @gateway = GATEWAY
+    @gateway = CIM_GATEWAY
 
     response = @gateway.delete_customer_payment_profile(:customer_profile_id => self.user.customer_cim_id,
                                                         :customer_payment_profile_id => self.payment_cim_id)
