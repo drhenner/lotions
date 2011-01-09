@@ -2,7 +2,7 @@ class ProductType < ActiveRecord::Base
   acts_as_tree  :order => "name"
   has_many :products
 
-  validates :name,    :presence => true
+  validates :name,    :presence => true, :length => { :maximum => 255 }
 
   # paginated results from the admin ProductType grid
   #
