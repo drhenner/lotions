@@ -49,6 +49,9 @@ RSpec.configure do |config|
     User.any_instance.stubs(:create_cim_profile).returns(true)
     User.any_instance.stubs(:update_cim_profile).returns(true)
     User.any_instance.stubs(:delete_cim_profile).returns(true)
+    PaymentProfile.any_instance.stubs(:create_payment_profile).returns(true)
+    PaymentProfile.any_instance.stubs(:update_payment_profile).returns(true)
+    PaymentProfile.any_instance.stubs(:delete_payment_profile).returns(true)
 
     ::Sunspot.session = ::Sunspot::Rails::StubSessionProxy.new(::Sunspot.session)
   end
