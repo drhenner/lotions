@@ -2,6 +2,7 @@ require 'active_merchant'
 
 module UserCim
 
+=begin
   #Override ActiveRecord create to add in create_cim_profile
   def create
     if super and create_cim_profile
@@ -31,13 +32,14 @@ module UserCim
     end
     return false
   end
-
+=end
   private
 
   def create_cim_profile
+    puts '---------------------------------=======================-------------------============================---------------'
     return true if customer_cim_id
     #Login to the gateway using your credentials in environment.rb
-    @gateway = GATEWAY
+    @gateway = CIM_GATEWAY
 
     #setup the user object to save
     @user = {:profile => user_profile}
@@ -61,7 +63,7 @@ module UserCim
       return false
     end
     if self.email_changed? || self.first_name_changed? || self.last_name_changed?
-      @gateway = GATEWAY
+      @gateway = CIM_GATEWAY
 
       response = @gateway.update_customer_profile(:profile => user_profile.merge({
           :customer_profile_id => self.customer_cim_id
@@ -80,7 +82,7 @@ module UserCim
     if not self.customer_cim_id
       return false
     end
-    @gateway = GATEWAY
+    @gateway = CIM_GATEWAY
 
     response = @gateway.delete_customer_profile(:customer_profile_id => self.customer_cim_id)
 
