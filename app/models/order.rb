@@ -370,6 +370,23 @@ class Order < ActiveRecord::Base
     shipments_count > 0
   end
 
+  def self.create_subscription_order(user)
+    order = Order.new(
+              :user   => user,
+              :email  => user.email,
+              :bill_address => user.billing_address,
+              :ship_address => user.shipping_address
+                      )
+    oi = OrderItem.new( :total            => user.account.monthly_charge,
+                        :price            => user.account.monthly_charge,
+                        :variant_id       => Variant::MONTHLY_BILLING_ID,
+                        :shipping_rate_id => ShippingRate::MONTHLY_BILLING_RATE_ID
+                      )
+    order.push(oi)
+    order.save
+    order
+  end
+
   # paginated results from the admin orders that are completed grid
   #
   # @param [Optional params]
