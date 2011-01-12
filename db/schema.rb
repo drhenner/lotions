@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110103060342) do
+ActiveRecord::Schema.define(:version => 20110112061155) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",                                                           :null => false
@@ -131,6 +131,20 @@ ActiveRecord::Schema.define(:version => 20110103060342) do
   end
 
   add_index "countries", ["name"], :name => "index_countries_on_name"
+
+  create_table "coupons", :force => true do |t|
+    t.string   "type",                                                           :null => false
+    t.string   "code",                                                           :null => false
+    t.decimal  "amount",        :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "minimum_value", :precision => 8, :scale => 2
+    t.integer  "percent",                                     :default => 0
+    t.text     "description",                                                    :null => false
+    t.boolean  "combine",                                     :default => false
+    t.datetime "starts_at"
+    t.datetime "expires_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "images", :force => true do |t|
     t.integer  "imageable_id"
@@ -288,6 +302,8 @@ ActiveRecord::Schema.define(:version => 20110103060342) do
     t.string  "name",                        :null => false
     t.integer "parent_id"
     t.boolean "active",    :default => true
+    t.integer "rgt"
+    t.integer "lft"
   end
 
   add_index "product_types", ["parent_id"], :name => "index_product_types_on_parent_id"
