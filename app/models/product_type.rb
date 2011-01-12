@@ -1,5 +1,5 @@
 class ProductType < ActiveRecord::Base
-  acts_as_tree  :order => "name"
+  acts_as_nested_set  #:order => "name"
   has_many :products
 
   validates :name,    :presence => true, :length => { :maximum => 255 }
