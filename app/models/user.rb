@@ -265,12 +265,28 @@ class User < ActiveRecord::Base
     customer_cim_id
   end
 
-  # name and first line of address
+  # name and first line of address (used by credit card gateway to descript the merchant)
   #
   # @param  [ none ]
   # @return [ String ] name and first line of address
   def merchant_description
     [name, default_shipping_address.try(:address_lines)].compact.join(', ')
+  end
+
+  # Find users that have signed up for the subscription
+  #
+  # @params [ none ]
+  # @return [ Arel ]
+  def self.find_subscription_users
+    where('account_id NOT IN (?)', Account::FREE_ACCOUNT_IDS )
+  end
+
+  # include addresses in Find
+  #
+  # @params [ none ]
+  # @return [ Arel ]
+  def include_default_addresses
+    includes([:default_billing_address, :default_shipping_address, :account])
   end
 
   # paginated results from the admin User grid
