@@ -1,0 +1,20 @@
+
+#main-product-type-tabs {
+
+
+  li {
+    display: inline;
+    list-style: none;
+    color: #d77;
+    padding: 3px;
+    a {
+      color: #d77;
+    }
+    a:hover {
+      color: #954;
+    }
+  }
+  li:hover {
+    color: #954;
+  }
+}
