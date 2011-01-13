@@ -198,6 +198,26 @@ a:visited {
   color: #4484D2;
 }
 
+/* line 5, ../../app/stylesheets/_main_product_tabs.scss */
+#main-product-type-tabs li {
+  display: inline;
+  list-style: none;
+  color: #d77;
+  padding: 3px;
+}
+/* line 10, ../../app/stylesheets/_main_product_tabs.scss */
+#main-product-type-tabs li a {
+  color: #d77;
+}
+/* line 13, ../../app/stylesheets/_main_product_tabs.scss */
+#main-product-type-tabs li a:hover {
+  color: #954;
+}
+/* line 17, ../../app/stylesheets/_main_product_tabs.scss */
+#main-product-type-tabs li:hover {
+  color: #954;
+}
+
 /* line 2, ../../app/stylesheets/_app.scss */
 a {
   text-decoration: none;
