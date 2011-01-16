@@ -29,11 +29,9 @@ Hadean.Cart = {
       jQuery('.variant_border').click( function() {
           jQuery('#cart_item_variant_id').val(this.getAttribute("data-variant"));
           jQuery('.variant_border')
-          jQuery(".variant_border").css("border","solid 2px #ddc");
-          jQuery(".variant_border").css("background-color","#EED");
-          jQuery(this).css("border","solid 2px #cee");
-          jQuery(this).css("background-color","#dFF");
-          jQuery('#submit_add_to_cart').removeClass('add-to-cart').addClass('ready-to-add-to-cart');
+          jQuery(".variant_border").removeClass('selected_variant');
+          jQuery(this).addClass('selected_variant')
+          //jQuery('#submit_add_to_cart').removeClass('add-to-cart').addClass('ready-to-add-to-cart');
 
 
         }
