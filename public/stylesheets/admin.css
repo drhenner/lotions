@@ -335,7 +335,7 @@ input.text, input.title, input[type="text"], input[type="password"] {
 
 /* line 155, ../../app/stylesheets/_app.scss */
 #content_wrapper {
-  padding-top: 4px;
+  padding-top: 7px;
   font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
 }
 
@@ -381,11 +381,11 @@ input.text, input.title, input[type="text"], input[type="password"] {
 .variant_border {
   padding: 3px;
   margin-bottom: 3px;
-  border: solid 2px #ddc;
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
+  border: solid 1px #DD8888;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
   behavior: url(border-radius.htc);
-  background-color: #EED;
+  background-color: #FFF;
   cursor: pointer;
 }
 
@@ -503,11 +503,24 @@ input.text, input.title, input[type="text"], input[type="password"] {
 }
 
 /* line 275, ../../app/stylesheets/_app.scss */
+.dkBlueBox {
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  behavior: url(border-radius.htc);
+  border: solid #AED2EE 0.5px;
+}
+
+/* line 280, ../../app/stylesheets/_app.scss */
+.innerBox {
+  padding: 8px;
+}
+
+/* line 283, ../../app/stylesheets/_app.scss */
 .top_border td {
   border-top: solid 2px #ddd;
 }
 
-/* line 281, ../../app/stylesheets/_app.scss */
+/* line 289, ../../app/stylesheets/_app.scss */
 button.ui-button {
   text-shadow: 0 0 0 #000;
 }
