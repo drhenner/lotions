@@ -1,9 +1,11 @@
 // HEADER DIVs includes search , cart button, wish button
 
-#header_wrapper {
+#sub_header_wrapper {
 
-  border-bottom: 1px solid #CCCCCC;
+  border-bottom: 1px solid #E6E6E6;
   background: url("../../images/header/bg-header-wrap.png") repeat-x scroll center bottom #FFFFFF;
+  text-align: left;
+  color: #B2B2B2;
 
   #header {
     font-family: "Helvetica Neue",Helvetica,Arial,"Liberation Sans",FreeSans,sans-serif;
@@ -63,7 +65,7 @@
           padding: 13px 9px;
           border-right: 1px solid #CCCCCC;
           strong {
-            color: #AA5555 !important;
+            color: #55A4F2 !important;
             display: block;
             font-size: 12px;
             font-weight: bold;
@@ -90,7 +92,7 @@
           border-right: 1px solid #CCCCCC;
 
           strong {
-            color: #AA5555 !important;
+            color: #55A4F2 !important;
             display: block;
             font-size: 15px;
             font-weight: bold;
@@ -141,44 +143,9 @@
       }
     }
   }
-}
-
-.field.search {
-  position: relative;
-  .icon-search {
-    left: 8px;
-    position: absolute;
-    top: 5px;
+  ul, ol {
+    margin: 0.3em 0 0.3em 0;
+    padding-left: 0;
   }
-  input.text {
-    @include rounded(11px);
-    background: -moz-linear-gradient(center top , #E6E6E6 0%, #FFFFFF 100%) repeat-x scroll center top #FFFFFF;
-    border: 1px solid #CCCCCC;
-    font-size: 12px;
-    height: 14px !important;
-    margin: 0;
-    outline: medium none;
-    padding: 4px 28px;
-    vertical-align: top;
-    width: 225px;
-  }
-}
 
-.icon-search {
-  -moz-box-orient: vertical;
-  // ADD SPRITE IMAGE HERE
-  display: inline-block;
-  height: 14px;
-  overflow: hidden;
-  vertical-align: middle;
-  width: 14px;
-
-}
-
-a {
-  color: #AA5555;
-  text-decoration: none;
-}
-a:visited {
-  color: #994444;
 }

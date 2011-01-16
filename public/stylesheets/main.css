@@ -71,7 +71,7 @@
 }
 /* line 65, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header #menu-main li#menu-main-user div strong {
-  color: #55A4F2 !important;
+  color: #AA5555 !important;
   display: block;
   font-size: 12px;
   font-weight: bold;
@@ -100,7 +100,7 @@
 }
 /* line 92, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header #menu-main li a strong {
-  color: #55A4F2 !important;
+  color: #AA5555 !important;
   display: block;
   font-size: 15px;
   font-weight: bold;
@@ -189,33 +189,203 @@
 
 /* line 178, ../../app/stylesheets/_main_header.scss */
 a {
-  color: #55A4F2;
+  color: #AA5555;
   text-decoration: none;
 }
 
 /* line 182, ../../app/stylesheets/_main_header.scss */
 a:visited {
-  color: #4484D2;
+  color: #994444;
 }
 
-/* line 5, ../../app/stylesheets/_main_product_tabs.scss */
+/* line 3, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper {
+  border-bottom: 1px solid #E6E6E6;
+  background: url("../../images/header/bg-header-wrap.png") repeat-x scroll center bottom white;
+  text-align: left;
+  color: #B2B2B2;
+}
+/* line 10, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header {
+  font-family: "Helvetica Neue",Helvetica,Arial,"Liberation Sans",FreeSans,sans-serif;
+  height: 59px;
+}
+/* line 14, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header .container {
+  margin-left: auto;
+  margin-right: auto;
+}
+/* line 18, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header form.search {
+  border-right: 1px solid #EEEEEE;
+  display: inline;
+  float: left;
+  height: 29px;
+  padding: 17px 15px 13px;
+}
+/* line 24, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header form.search.input-search {
+  width: 230px;
+}
+/* line 28, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header #logo {
+  display: inline;
+  float: left;
+  font-size: 24px;
+  margin-bottom: 0;
+  margin-top: 5px;
+  margin-left: 0px;
+  border-right: 1px solid #CCCCCC;
+  width: 224px;
+  height: 100%;
+}
+/* line 39, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header #logo a {
+  display: block;
+  padding: 0px;
+}
+/* line 43, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header #logo a span {
+  -moz-box-orient: vertical;
+  display: block;
+  height: 20px;
+  text-align: left;
+  vertical-align: middle;
+  width: 160px;
+}
+/* line 54, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header #menu-main {
+  font-size: 0;
+  list-style-type: none;
+  float: left;
+  margin: 0;
+  overflow: hidden;
+}
+/* line 61, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header #menu-main li#menu-main-user {
+  display: inline-block;
+}
+/* line 63, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header #menu-main li#menu-main-user div {
+  display: inline-block;
+  padding: 13px 9px;
+  border-right: 1px solid #CCCCCC;
+}
+/* line 67, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header #menu-main li#menu-main-user div strong {
+  color: #55A4F2 !important;
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 15px;
+}
+/* line 74, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header #menu-main li#menu-main-user div span {
+  color: #B2B2B2 !important;
+  font-size: 12px;
+}
+/* line 78, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header #menu-main li#menu-main-user div a {
+  padding: 0px 0px;
+  border-right: none;
+}
+/* line 85, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header #menu-main li {
+  margin-left: 0;
+  display: inline-block;
+}
+/* line 89, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header #menu-main li a {
+  display: inline-block;
+  padding: 13px 7px;
+  border-right: 1px solid #CCCCCC;
+}
+/* line 94, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header #menu-main li a strong {
+  color: #55A4F2 !important;
+  display: block;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 15px;
+}
+/* line 101, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header #menu-main li a span {
+  color: #B2B2B2 !important;
+  font-size: 12px;
+}
+/* line 106, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header #menu-main li a #menu-main-fund {
+  margin-left: -1px;
+}
+/* line 110, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header #menu-main li.selected {
+  border-bottom: 1px solid #FFFFFF;
+  border-color: #CCCCCC #CCCCCC #FFFFFF;
+  z-index: 1;
+}
+/* line 115, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header #menu-main li.selected a {
+  background: none repeat scroll 0 0 #FFFFFF;
+}
+/* line 122, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header #menu-sub {
+  border: 0 none;
+  display: inline;
+  float: left;
+  margin: 0;
+  outline: 0 none;
+  overflow: visible;
+  padding: 0 0 0 8px;
+}
+/* line 131, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header #menu-sub li {
+  display: inline;
+  float: left;
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+  padding-right: 0;
+  white-space: nowrap;
+}
+/* line 141, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper #header #menu-sub li:first-child, #sub_header_wrapper #header #menu-sub li.first {
+  padding-left: 0;
+}
+/* line 146, ../../app/stylesheets/_sub_header.scss */
+#sub_header_wrapper ul, #sub_header_wrapper ol {
+  margin: 0.3em 0 0.3em 0;
+  padding-left: 0;
+}
+
+/* line 2, ../../app/stylesheets/_main_product_tabs.scss */
+#main-product-type-tabs {
+  font-variant: small-caps;
+  font-weight: bold;
+  font-size: 106%;
+}
+/* line 8, ../../app/stylesheets/_main_product_tabs.scss */
 #main-product-type-tabs li {
   display: inline;
   list-style: none;
   color: #d77;
   padding: 3px;
 }
-/* line 10, ../../app/stylesheets/_main_product_tabs.scss */
-#main-product-type-tabs li a {
-  color: #d77;
-}
 /* line 13, ../../app/stylesheets/_main_product_tabs.scss */
-#main-product-type-tabs li a:hover {
-  color: #954;
+#main-product-type-tabs li a {
+  color: #828282;
 }
-/* line 17, ../../app/stylesheets/_main_product_tabs.scss */
+/* line 16, ../../app/stylesheets/_main_product_tabs.scss */
+#main-product-type-tabs li a:hover {
+  color: #AA4444;
+}
+/* line 19, ../../app/stylesheets/_main_product_tabs.scss */
+#main-product-type-tabs li .selected {
+  color: #AA4444 !important;
+}
+/* line 23, ../../app/stylesheets/_main_product_tabs.scss */
 #main-product-type-tabs li:hover {
-  color: #954;
+  color: #626262;
 }
 
 /* line 2, ../../app/stylesheets/_app.scss */
