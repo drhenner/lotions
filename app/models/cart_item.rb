@@ -4,6 +4,8 @@ class CartItem < ActiveRecord::Base
   belongs_to :cart
   belongs_to :variant
 
+  QUANTITIES = [1,2,3,4]
+
   # Call this if you need to know the unit price of an item
   #
   # @param [none]
