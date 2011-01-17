@@ -63,11 +63,11 @@ class Shopping::CartItemsController < Shopping::BaseController
   # PUT /carts/1
   # PUT /carts/1.xml
   def update
-    @cart_item = session_cart.shopping_cart_items.find(params[:id])
+    #@cart_item = session_cart.shopping_cart_items.find(params[:id])
 
     respond_to do |format|
-      if @cart_item.update_attributes(params[:cart_item])
-        format.html { redirect_to(@cart_item, :notice => 'Item was successfully updated.') }
+      if session_cart.update_attributes(params[:cart])
+        format.html { redirect_to(shopping_cart_items_url(), :notice => 'Item was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -81,7 +81,17 @@ class Shopping::CartItemsController < Shopping::BaseController
   #   otherwise false is returned if there is an error
   #   method => PUT
   def move_to
+      @cart_item = session_cart.cart_items.find(params[:id])
 
+      respond_to do |format|
+        if @cart_item.update_attributes(:item_type_id => params[:item_type_id])
+          format.html { redirect_to(shopping_cart_items_url() ) }
+          format.xml  { head :ok }
+        else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @cart_item.errors, :status => :unprocessable_entity }
+        end
+      end
   end
 
   # DELETE /carts/1
